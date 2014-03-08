@@ -16,6 +16,9 @@ for (i in 1:number_electorates){
   tmp <- tmp[-((first_blank - 1) : nrow(tmp)), ]
   names(tmp)[1:2] <- c("Polling_Location", "Polling_Place")
   
+  # in some of the data there are annoying subheadings in the second column.  We can
+  # identify these as rows that return NA when you sum up where the votes should be
+  tmp <- tmp[!is.na(apply(tmp[, -(1:2)], 1, function(x){sum(as.numeric(x))})), ]
   
   # need to fill in the gaps where there is no polling location
   last_polling_location <- tmp[1, 1]
