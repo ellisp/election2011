@@ -1,0 +1,3 @@
+<?xml version="1.0"?>
+<!--<!DOCTYPE metadata SYSTEM "http://www.esri.com/metadata/esriprof80.dtd">-->
+<metadata xml:lang="en"><Esri><MetaID>{A33AD15C-4758-43C1-85A5-A96D78FE7FC9}</MetaID><CreaDate>20071213</CreaDate><CreaTime>14512900</CreaTime><SyncOnce>TRUE</SyncOnce><DataProperties><lineage><Process ToolSource="C:\Program Files\ArcGIS\ArcToolbox\Toolboxes\Data Management Tools.tbx\AddSpatialIndex" Date="20071213" Time="145129">AddSpatialIndex T:\0806\KAF\AE03426\Technical\Deliverables\Shapefile_NZTM/ged07.shp 0 0 0 T:\0806\KAF\AE03426\Technical\Deliverables\Shapefile_NZTM/ged07.shp</Process></lineage></DataProperties></Esri></metadata>
