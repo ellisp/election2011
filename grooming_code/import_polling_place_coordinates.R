@@ -1,8 +1,12 @@
 library(proj4)
 library(mbiemaps)
+data(TA)
+data(AU)
 
+download.file("http://www.electionresults.govt.nz/electionresults_2011/2011_Polling_Place_Co-ordinates.csv", 
+              "raw_data/2011_Polling_Place_Co-ordinates.csv")
 Polling_Place_coords <- read.csv("raw_data/2011_Polling_Place_Co-ordinates.csv", stringsAsFactors=FALSE)
-dim(Polling_Place_coords)
+
 
 Polling_Place_coords <- subset(Polling_Place_coords, !is.na(NZTM2000.Easting))
 

@@ -23,3 +23,5 @@ save(electorates_map, file="pkg/data/electorates_map.rda")
 save(electorates_map_gg, file="pkg/data/electorates_map_simpl_gg.rda")
 
 rm(tmp, tmp2, path)
+
+# ggplot(electorates_map_gg, aes(x=long, y=lat, group=group, fill=NAME)) + geom_polygon()
