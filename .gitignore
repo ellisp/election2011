@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 output*
+Thumbs.db
+ggmapTemp.png
