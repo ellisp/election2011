@@ -1,4 +1,4 @@
-http://www.electionresults.govt.nz/electionresults_2011/e9/csv/e9_part8_party_1.csv
+# assumes existence of 'number_electorates' variable from import_candidate_vote.R
 
 
 #--------- Download 70 csvs for candidate vote------------------
@@ -48,3 +48,5 @@ for (i in 1:number_electorates){
 party_results_polling_place <- do.call("rbind", results_polling_place)
 
 save(party_results_polling_place, file="pkg/data/party_results_polling_place.rda")
+
+rm(tmp)
