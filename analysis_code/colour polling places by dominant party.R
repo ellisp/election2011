@@ -3,7 +3,11 @@ library(ggmap)
 
 elects <- unique(party_results_polling_place$Electorate)
 
-for (i in 64: length(elects)){
+
+latlong_df <- data.frame(Polling_Place_latlong@data$Address, Polling_Place_latlong@coords)
+names(latlong_df) <- c("Address", "long", "lat")
+
+for (i in 1: length(elects)){
   elect <- elects[i]
   
   poll <- subset(party_results_polling_place,  Electorate == elect &
@@ -17,9 +21,8 @@ for (i in 64: length(elects)){
                     Volume = sum(Votes))
   dominant <- merge(dominant, vol)
   
-  tmp <- merge(dominant, Polling_Place_latlong[ , c("Address", "lat", "long")], 
+  tmp <- merge(dominant, latlong_df, 
                by.x="Polling_Place", by.y="Address", all.x=FALSE)
-  tmp <- subset(tmp, !is.na(lat))
   
   # To centre the map so all the coordinates included:
   # this_area <- get_map(location=c(long=mean(range(tmp$long)), lat=mean(range(tmp$lat))), zoom=9)
