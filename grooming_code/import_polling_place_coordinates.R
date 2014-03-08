@@ -25,7 +25,9 @@ Polling_Place_latlong <- SpatialPointsDataFrame(coords =  tmp,
                                                 data = Polling_Place_coords[, c("Electorate", "Suburb", "Address")])
 
 
-Polling_Place_latlong@data$TA <- over(Polling_Place_latlong, TA)$NAME
+Polling_Place_latlong@data$TA_fullname <- over(Polling_Place_latlong, TA)$NAME
+Polling_Place_latlong@data$TA <- gsub(" District", "", Polling_Place_latlong@data$TA_fullname)
+Polling_Place_latlong@data$TA <- gsub(" City", "", Polling_Place_latlong@data$TA)
 Polling_Place_latlong@data$AU <- over(Polling_Place_latlong, AU)$NAME
 
 Polling_Place_latlong@data$AU[Polling_Place_latlong@data$Suburb == "Great Barrier Island"] <- "Great Barrier Island"
