@@ -1,22 +1,17 @@
 library(mbiemaps)
 
-byTA <- merge(party_results_polling_place, Polling_Place_latlong@data, by.x="Polling_Place", by.y="Address", all.x=FALSE) # drops votes before polling day
-byTA <- ddply(byTA, .(TA), summarise,
-              "Green Party" = sum(Votes[Party == "Green Party"]) / sum(Votes),
-              "Labour Party" = sum(Votes[Party == "Labour Party"]) / sum(Votes),
-              "National Party" = sum(Votes[Party == "National Party"]) / sum(Votes),
-              "New Zealand First Party" = sum(Votes[Party == "New Zealand First Party"]) / sum(Votes))
 
-names(byTA)[names(byTA) == "TA"] <- "FULLNAME"
+byTA <- merge(party_results_polling_place, Polling_Place_latlong@data, by.x="Polling_Place", by.y="Address", all.x=FALSE) # drops votes before polling day
+byTA <- party_vote_by_TA[ , c("TA", "Green Party", "Labour Party", "National Party", "New Zealand First Party")]
+  
+  
+names(byTA)[names(byTA) == "TA"] <- "NAME"
 
 
 
 #===============
 parties <- names(byTA)[-1]
-byTA_m <- melt(byTA, id.vars="FULLNAME", variable.name="Party", value.name="Percentage")
-
-byTA_m$NAME <- gsub(" District", "", byTA_m$FULLNAME)
-byTA_m$NAME <- gsub(" City", "", byTA_m$NAME)
+byTA_m <- melt(byTA, id.vars="NAME", variable.name="Party", value.name="Percentage")
 
 
 for(i in  1:length(parties)){
@@ -47,7 +42,7 @@ p <- list()
 for (i in 1:length(parties)){
   p[[i]] <-    ggplot(subset(ta2_gg, Party==parties[i])) +
     geom_polygon(aes(x=long, y=lat, group=group, fill = Percentage)) +
-    theme_nothing(legend=TRUE) +
+    mbie::theme_nothing() +
     coord_map() +
     scale_fill_gradient(low="white", high=party_colours[parties[i]], na.value="white", label=percent) +
     ggtitle(parties[i])
