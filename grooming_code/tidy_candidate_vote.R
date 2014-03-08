@@ -5,12 +5,12 @@ results_polling_place <- list()
 for (i in 1:number_electorates){
   
   # What is the electorate name?  Is in cell A2 of each csv
-  electorate <- read.csv(filenames[i], skip=1, nrows=1, header=FALSE, stringsAsFactors=FALSE)[,1]
+  electorate <- read.csv(filenames_cand[i], skip=1, nrows=1, header=FALSE, stringsAsFactors=FALSE)[,1]
   
   # read in the bulk of the data
-  tmp <- read.csv(filenames[i], skip=2, check.names=FALSE, stringsAsFactors=FALSE)
+  tmp <- read.csv(filenames_cand[i], skip=2, check.names=FALSE, stringsAsFactors=FALSE)
   
-  first_blank <- which(tmp[,2] == "")[1]
+  first_blank <- which(tmp[,2] == "")
   candidates_parties <- tmp[(first_blank + 2) : nrow(tmp), 1:2]
   names(candidates_parties) <- c("Candidate", "Party")
   candidates_parties <- rbind(candidates_parties,
