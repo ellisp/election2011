@@ -1,4 +1,5 @@
 library(devtools)
+rm(list=ls())
 
 #---------------vote data----------------
 # import data from web
@@ -16,7 +17,7 @@ source("grooming_code/import_polling_place_coordinates.R")
 
 #---------------combinations------------------
 
-
+source("grooming_code/create_TA_and_AU_summaries.R")
 
 
 #------------build package-----------------

@@ -90,7 +90,6 @@ census_combined <- merge(census_combined, census5, by="Geography")
 
 rm(census1, census2, census3, census4, census5)
 
-first_space <- substring(census_combined$Geography)
 census_combined_ta <- subset(census_combined, substring(census_combined$Geography, 4, 4) == " ")
 nc <- nchar(as.character(census_combined_ta$Geography))
 census_combined_ta$TA_fullname <- substring(census_combined_ta$Geography, 5, nc)
