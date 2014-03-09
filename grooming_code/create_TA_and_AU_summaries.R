@@ -76,6 +76,8 @@ names(census3) <- c("Geography", "Mean_Household_Income_Dollars", "Median_Househ
 
 census4 <- subset(CWork_T3, Ethnicity == "Total People")
 census4 <- census4[ , c("Geography", "Unemployment_Rate_Percent", "Unemployed")]
+census4$Unemployment_Rate_Proportion <- census4$Unemployment_Rate_Percent / 100
+census4$Unemployment_Rate_Percent <- NULL
 
 census5 <- ddply(subset(CEducation_T1, Age_Group=="Total" & Ethnicity == "Total People"), .(Geography), summarise,
                  Proportion_No_Education = sum(Total_People[Level_of_education == "None"]) / 
