@@ -3,5 +3,5 @@ party_colours <- c("Green Party" = "darkgreen",
                    "Mana" = "black", 
                    "National Party" ="darkblue", 
                    "New Zealand First Party" = "brown",
-                   "Aotearoa Legalise Cannabis Party" = "white",
+                   "Aotearoa Legalise Cannabis Party" = "grey50",
                    "Maori Party" = "Orange")

@@ -7,7 +7,14 @@ shinyUI(pageWithSidebar(
   headerPanel("Election Results 2011"),
   
   sidebarPanel(
-    selectInput("party", "Order by party:",
+   
+    
+    
+    selectInput("variable", "Variable:",
+                list("Party vote" = "pt", 
+                     "Mean household income" = "hs")),
+    
+    selectInput("party", "If showing vote, order by party:",
                 list("National Party", 
                      "Labour Party", 
                      "Green Party",
@@ -16,13 +23,12 @@ shinyUI(pageWithSidebar(
                      "Mana",
                      "Aotearoa Legalise Cannabis Party"))
     
-    
-    
     ),
   
   # Show the caption and plot of the requested variable against mpg
   mainPanel(
-    plotOutput("dots", height="800px")
+    plotOutput("dots", height="800px"),
+    verbatimTextOutput("summary")
   )
     
       
