@@ -45,6 +45,8 @@ for (i in 1:number_electorates){
 candidate_results_polling_place <- do.call("rbind", results_polling_place)
 candidate_results_polling_place$Votes <- as.numeric(candidate_results_polling_place$Votes)
 
+candidate_results_polling_place$Party[candidate_results_polling_place$Party  == "MÄori Party"] <- "Maori Party"
+
 save(candidate_results_polling_place, file="pkg/data/candidate_results_polling_place.rda")
 
 rm(candidates_parties, tmp)

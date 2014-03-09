@@ -40,6 +40,8 @@ for (i in 1:number_electorates){
 party_results_polling_place <- do.call("rbind", results_polling_place)
 party_results_polling_place$Votes <- as.numeric(party_results_polling_place$Votes)
 
+party_results_polling_place$Party <- rename.levels(party_results_polling_place$Party, orig="MÄori Party", new= "Maori Party")
+
 save(party_results_polling_place, file="pkg/data/party_results_polling_place.rda")
 
 rm(tmp)
