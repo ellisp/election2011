@@ -9,7 +9,7 @@ input <- data.frame(variable="Mean_Household_Income_Dollars", party="Green Party
 shinyServer(function(input, output) {
   
   
-  output$scatter <- renderPlot({
+  output$dots <- renderPlot({
     
     
     tmp <- party_vote_by_TA[ , c("TA", as.character(input$variable1), as.character(input$party), as.character(input$variable2))]
