@@ -19,14 +19,15 @@ shinyUI(pageWithSidebar(
     
     br(),
     
-    selectInput("variabley", "Vertical axis and size (scatter plot only):",
+    conditionalPanel(
+      condition = "input.theTabs === 'Scatter plot'",
+      selectInput("variabley", "Vertical axis and size (scatter plot only):",
                 choices=as.list(ethnicities),
                 selected="European"), 
     
     sliderInput("yRange", "Vertical axis range:",
-                min = 0, max = 200000, value = c(20000,135000)),
-    
-    br(),
+                min = 0, max = 200000, value = c(20000,135000))
+    ),
     
     selectInput("variablex", "Horizontal axis and colour:",
                 choices=as.list(ethnicities),
@@ -34,12 +35,9 @@ shinyUI(pageWithSidebar(
     
     sliderInput("xRange", "Horizontal axis range:",
                 min = 0, max = 200000, value = c(20000,135000)),
-    
-    
-    
+      
      br(),
-        
-        
+            
     checkboxInput("equality", "Show equality line", TRUE),
     
     checkboxInput("regression", "Show regression line", FALSE)    
@@ -47,8 +45,8 @@ shinyUI(pageWithSidebar(
     ),
     
   mainPanel(
-    tabsetPanel(
-      tabPanel("Scatter plot", plotOutput("motion")), 
+    tabsetPanel(id="theTabs",
+      tabPanel("Scatter plot", plotOutput("motion", height="700px")), 
       tabPanel("Barchart", plotOutput("bar", height="700px"))
     )
   ) 

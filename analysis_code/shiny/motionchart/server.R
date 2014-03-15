@@ -39,15 +39,17 @@ shinyServer(function(input, output) {
               ExtraLine1 + 
               ExtraLine2 +
               geom_text(family="Comic Sans MS") +
-              scale_x_continuous(input$variablex, 
-                                 label=dollar, limits=input$xRange) +
-              scale_y_continuous(input$variabley, 
-                                 label=dollar, limits=input$yRange) +
+              scale_x_continuous(input$variablex, label=dollar, limits=input$xRange) +
+              scale_y_continuous(input$variabley, label=dollar, limits=input$yRange) +
               scale_color_gradientn(input$variablex, colours=c("red", "grey50", "blue"), 
-                                    label=dollar) +
-              scale_size_continuous(input$variabley, 
-                                    label=dollar) +
-              theme_grey(base_family=MyFont) 
+                                    label=dollar, breaks=
+                                      round(seq(input$xRange[2], input$xRange[1], length.out=10), -4)) +
+              scale_size_continuous(input$variabley, label=dollar, breaks=
+                                      round(seq(input$yRange[2], input$yRange[1], length.out=10), -4)) +
+              theme_grey(base_family=MyFont)  +
+              coord_equal() +
+              guides(colour = guide_legend(order = 2), 
+                  size = guide_legend(order = 1))
                 
       print(p)
   })
@@ -61,8 +63,9 @@ shinyServer(function(input, output) {
       scale_x_continuous(input$variablex, label=dollar, limits=input$xRange) +
       scale_color_gradientn(input$variablex, colours=c("red", "grey50", "blue"), label=dollar) +
       scale_size_continuous(input$variablex, label=dollar) +
-      theme(legend.position="none") +
-      theme_grey(base_family=MyFont) 
+      theme_grey(base_family=MyFont) +
+      theme(legend.position="none")
+      
     
     print(p)
   })
