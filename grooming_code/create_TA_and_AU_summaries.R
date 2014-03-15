@@ -62,11 +62,11 @@ byAU <- merge(byAU, AU@data, by.x="AU", by.y="NAME", all.x=TRUE)
 
 
 # Comment - not clear why this data has 3.7m people as the Total people total ages in total new zealand
-census1 <- ddply(subset(C01Pop_T1, Age=="Total"), .(Geography), summarise,
+census1 <- ddply(subset(CPopulation_T1, Age=="Total"), .(Geography), summarise,
       Proportion_Maori_People = sum(Total_People[Ethnicity == "Maori"]) / Total_People[Ethnicity == "Total People"])
 
 
-census2 <- subset(C01Income_T1, Ethnicity == "Total People" & Age_group =="Total")
+census2 <- subset(CIncome_T1, Ethnicity == "Total People" & Age_group =="Total")
 census2 <- census2[ , c("Geography", "Median_Personal_Income_Dollars", "Mean_Personal_Income_Dollars")]
 
 # warning - think this is the one with the mean and median transposed hence we swap them roung
